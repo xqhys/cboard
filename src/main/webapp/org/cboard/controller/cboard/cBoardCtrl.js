@@ -78,4 +78,10 @@ cBoard.controller('cBoardCtrl', function ($rootScope, $scope, $location, $http, 
             }
         });
     }
+
+
+    $scope.ghs = function () {
+        alert(444);
+    }
+
 });

@@ -1,0 +1,322 @@
+.header {
+    width: 100%;
+    height: 60px;
+    background: url("../img/bg-header.png") center no-repeat;
+}
+
+#wrapper {
+    background-color: transparent;
+}
+
+.logo {
+    float: left;
+    margin-left: 15px;
+    margin-top: 12px;
+}
+
+/*修改原有的样式表*/
+.nav {
+    margin: 0 8px;
+}
+
+.nav-header {
+    padding: 0;
+    background: none;
+    margin-top: 15px;
+}
+
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+    background: transparent
+}
+
+.nav.navbar-top-links > li > a:hover, .nav.navbar-top-links > li > a:focus {
+    background: transparent
+}
+
+.navbar-right .dropdown-menu {
+    z-index: 2002
+}
+
+.navbar-top-links .dropdown-menu li {
+    width: 100%
+}
+
+.body.full-height-layout #wrapper,
+body.full-height-layout #page-wrapper,
+body.fixed-sidebar .navbar-static-side,
+body.canvas-menu .navbar-static-side {
+    height: calc(100% - 70px);
+    padding-top: 10px;
+}
+
+body.full-height-layout #page-wrapper {
+    padding-top: 0;
+}
+
+body.full-height-layout #page-wrapper.top-nav-content {
+    height: calc(100% - 130px);
+    padding-top: 10px;
+}
+
+.nav.navbar-top-links li.fullScreen {
+    line-height: 60px;
+    margin-right: 20px;
+
+}
+
+.nav.navbar-top-links li.fullScreen a {
+    font-size: 20px;
+    font-weight: normal;
+}
+
+.nav.navbar-top-links li.fullScreen a i {
+    color: #8bb3e0;
+}
+
+#content-main {
+    height: calc(100% - 70px);
+}
+
+/*#page-wrapper{
+    background:url("../img/bg-content.png") center no-repeat ;
+    background-size: 100% 100%;
+}*/
+/*
+.navbar-static-side {
+    background: url("../img/bg-left-nav.png") center no-repeat;
+    background-size: 100% 100%;
+}
+*/
+
+.nav > li.menu-change {
+    width: 60px;
+    height: 60px;
+    margin-right: 0;
+    background-image: url("../img/icons/icon-menu-change .png");
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.nav > li.menu-change.active {
+    background-color: #0b3f9a !important;
+}
+
+.nav > li.menu-change.active > a {
+    background-color: transparent !important;
+}
+
+.menu-change:hover {
+    background-color: transparent !important;
+}
+
+.footer {
+    background: transparent;
+    border-top: none;
+}
+
+.gray-bg {
+    background: url("../img/bg-content.png") center no-repeat;
+    background-size: 100% 100%;
+}
+
+.nav > li > a {
+    padding: 16px 12px;
+    border-radius: 4px;
+}
+
+.nav > li > a.nav-label-first {
+    font-size: 16px;
+}
+
+.nav > li.active > a {
+    background-color: #1b9cff;
+    color: #fff;
+}
+
+.nav > li.active {
+/*    background-color: #fff;*/
+    border-left: none;
+}
+
+.navbar-default .nav > li > a:hover, .navbar-default .nav > li > a:focus {
+    background-color: transparent;
+    color: #1b9cff;
+}
+
+.nav.nav-second-level > li.active a {
+   /* background-color: #fff;
+    color: #1b9cff;*/
+}
+
+.nav.navbar-top-links > li > a:hover, .navbar-default .nav.navbar-top-links > li > a:focus {
+    background-color: inherit;
+}
+
+.navbar-top-links li:last-child {
+    margin-right: 0;
+}
+
+.nav.navbar-top-links {
+    margin: 0;
+}
+
+.navbar-top-links li {
+    float: left;
+}
+
+.nav.navbar-top-links > li > a {
+    padding: 0;
+    display: block;
+}
+
+.page-tabs a {
+    background-color: rgba(27, 156, 255, 0.1);
+    padding: 0 12px;
+    border-right: none;
+    position: relative;
+    color: #8c9eac;
+    margin-left: 17px;
+}
+
+.page-tabs a:before {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    border-style: solid;
+    border-width: 16px 8px;
+    top: 0;
+    left: -16px;
+    border-color: rgba(27, 156, 255, 0.1) rgba(27, 156, 255, 0.1) transparent transparent;
+}
+
+.page-tabs a.menu-index {
+    margin-left: 0;
+}
+
+.page-tabs a.menu-index:before {
+    display: none;
+}
+
+.page-tabs a:after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    border-style: solid;
+    border-width: 16px 8px;
+    top: 0;
+    right: -16px;
+    border-color: transparent transparent rgba(27, 156, 255, 0.1) rgba(27, 156, 255, 0.1);
+}
+
+.page-tabs a.active, .page-tabs a:hover {
+    background: rgba(27, 156, 255, 1);
+    color: #fff;
+}
+
+.page-tabs a.active:before, .page-tabs a:hover:before {
+    border-color: rgba(27, 156, 255, 1) rgba(27, 156, 255, 1) transparent transparent;
+}
+
+.page-tabs a.active:after, .page-tabs a:hover:after {
+    border-color: transparent transparent rgba(27, 156, 255, 1) rgba(27, 156, 255, 1);
+}
+
+.page-tabs a.active:hover, .page-tabs a.active i:hover {
+    background: rgba(27, 156, 255, 1);
+    color: #fff;
+}
+
+nav.page-tabs {
+    height: 30px;
+    margin-left: 30px;
+/*    background-color: #e1ebf3;*/
+    border-bottom: 1px solid #e1ebf3;
+}
+.content-tabs{
+    border-bottom: 1px solid #e1ebf3;
+}
+.content-tabs {
+    line-height: 30px;
+    height: 32px;
+}
+
+.content-tabs .roll-nav,
+.content-tabs button {
+    height: 30px;
+}
+
+.content-tabs .roll-nav.roll-left,
+.content-tabs .roll-nav.roll-right.tabRight {
+    height: 30px;
+    width: 30px;
+}
+
+/*横向菜单的导航样式*/
+/*.collapse{
+    display: block !important;
+    background-color: #fff;
+    z-index: 9999;
+}*/
+.navbar-default.top-navbar-default.navbar-static-side {
+    width: 100%;
+    height: 60px;
+/*    background-color: #fff;*/
+    position: relative;
+}
+
+.navbar-default.top-navbar-default.navbar-static-side .nav > li {
+    float: left;
+    position: relative;
+}
+
+.navbar-default.top-navbar-default.navbar-static-side .nav .nav-second-level.collapse {
+    position: absolute;
+    top: 45px;
+    left: 0;
+    width: 200px;
+    margin: 0;
+    background-color: #2f4050;
+    z-index: 999;
+  /*  box-shadow: 0 0 15px #DDD;*/
+}
+
+.navbar-default.top-navbar-default.navbar-static-side .nav > li > a {
+    padding: 11px 12px;
+}
+
+.navbar-default.top-navbar-default.navbar-static-side .sidebar-collapse {
+    overflow-y: auto;
+}
+
+.navbar-default.top-navbar-default.navbar-static-side .slimScrollDiv {
+    height: auto !important;
+}
+
+.navbar-default.top-navbar-default.navbar-static-side .nav .nav-second-level > li {
+    float: none;
+    display: block;
+
+}
+
+.navbar-default.top-navbar-default.navbar-static-side .nav li > a > .fa.arrow {
+    margin-left: 5px;
+}
+
+.navbar-default.top-navbar-default.navbar-static-side .nav li > a > .fa.arrow:before {
+    content: "\f107"
+}
+
+.navbar-default.top-navbar-default.navbar-static-side .nav li.active > a > .fa.arrow:before {
+    content: "\f106"
+}
+
+body.full-height-layout #page-wrapper.top-nav-content {
+    margin: 0;
+}
+.nav-third-level li{
+    width: 100%;
+}
