@@ -98,3 +98,6 @@ hs_err_pid*
 *.log
 
 **/CElasticsearchDataProvider.java
+mycache/file/jvmAggregator_fe3a67a6c360edba8348ee6955db5c359a8b2910/offheap-disk-store/ehcache-disk-store.data
+mycache/file/jvmAggregator_fe3a67a6c360edba8348ee6955db5c359a8b2910/offheap-disk-store/ehcache-disk-store.meta
+mycache/.lock
