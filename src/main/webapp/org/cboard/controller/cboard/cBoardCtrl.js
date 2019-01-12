@@ -1,7 +1,8 @@
 /**
  * Created by yfyuan on 2016/7/19.
  */
-cBoard.controller('cBoardCtrl', function ($rootScope, $scope, $location, $http, $q, $filter, $uibModal, ModalUtils) {
+cBoard.controller('cBoardCtrl', function ($rootScope, $scope, $location, $http, $q, $filter, $uibModal, ModalUtils, IndexCss) {
+    IndexCss.setIndexCss($scope);
 
     var translate = $filter('translate');
 
@@ -77,11 +78,6 @@ cBoard.controller('cBoardCtrl', function ($rootScope, $scope, $location, $http, 
                 };
             }
         });
-    }
-
-
-    $scope.ghs = function () {
-        alert(444);
     }
 
 });
