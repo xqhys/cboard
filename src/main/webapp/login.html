@@ -18,23 +18,25 @@
             <h4 class="login-title"><span>系统登录</span></h4>
             <form class="login-form" action="login" method="post" onsubmit="return checkCaptcha();">
                 <div class="login-inner-div">
-                    <label class="login-label">用户名</label>
+                    <label class="login-label">用户名<span id="failure-username" style="color: red;"></span></label>
                     <input type="text" class="login-input" name="username">
                 </div>
                 <div class="login-inner-div">
-                    <label class="login-label">密码</label>
+                    <label class="login-label">密码<span id="failure-password" style="color: red;"></span></label>
                     <input type="password" class="login-input" name="password">
                 </div>
                 <div class="login-inner-div clearfix">
-                    <label class="login-label">验证码</label>
+                    <label class="login-label">验证码<span id="failure-code" style="color: red;"></span></label>
                     <input type="text" id="captchaCode" class="login-input login-code-input">
-                    <img id="loginCode" src="captcha/getCaptchaCode.do" height="38" width="110" class="login-vcode" onclick="changeCaptcha()"/>
+                    <img id="loginCode" src="captcha/getCaptchaCode.do" height="50" width="125" class="login-vcode" onclick="changeCaptcha();" title="看不清，换一张"/>
                 </div>
-                <button class="login-button" type="submit">登&nbsp;&nbsp;录</button>
+                <button class="login-button" type="button" onclick="checkCaptcha();">登&nbsp;&nbsp;录</button>
+                <label class="login-label" id="failure-login" style="color: red;"></label>
             </form>
         </div>
     </div>
 </div>
+
 <script type="text/javascript">
     //获取验证码图片
     function changeCaptcha(){
@@ -43,23 +45,38 @@
 
     //验证输入的验证码
     function checkCaptcha(){
-        var captchaCode = $("#captchaCode").val();
-        var flag = false;
+        if( $(".login-input")[0].value == ""){
+            $("#failure-username").html('&nbsp;&nbsp;&nbsp;&nbsp;请输入用户名');
+            return;
+        }
+        if( $(".login-input")[1].value == ""){
+            $("#failure-password").html('&nbsp;&nbsp;&nbsp;&nbsp;请输入密码');
+            return;
+        }
+        if( $(".login-input")[2].value == ""){
+            $("#failure-code").html('&nbsp;&nbsp;&nbsp;&nbsp;请输入验证码');
+            return;
+        }
+
         $.ajax({
             type:'post',
             async : false,
             url:'captcha/checkCaptchaCode.do',
-            data:{"captchaCode" : captchaCode},
+            data:{"captchaCode" : $(".login-input")[2].value},
             success:function(res){
                 if(res == "success"){
-                    flag = true;
+                    document.forms[0].submit();
                 }else {
-                    flag = false;
+                    $("#failure-code").html('&nbsp;&nbsp;&nbsp;&nbsp;验证码错误');
                 }
             }
         });
-        return flag;
     }
+
+    if(location.search.substr(1) == "error"){
+        $("#failure-login").text("登陆失败");
+    }
+
 </script>
 </body>
 </html>
