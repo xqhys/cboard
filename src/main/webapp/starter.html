@@ -14,7 +14,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!--[if lt IE 9]>
     <meta http-equiv="refresh" content="0;ie.html"/>
     <![endif]-->
-    <!--<link href="theme/static/favicon.ico" rel="stylesheet"/>-->
+    <link href="theme/static/favicon.ico" rel="icon"/>
     <link href="theme/static/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="theme/static/css/font-awesome.min.css" rel="stylesheet"/>
     <link href="theme/static/css/animate.css" rel="stylesheet"/>
@@ -197,7 +197,7 @@ desired effect
 |---------------------------------------------------------|
 -->
 <body class="fixed-sidebar full-height-layout gray-bg skin-default" style="overflow: hidden">
-<div class="wrapper">
+<div class="wrapper" id="wrapper">
 
     <!-- Main Header -->
     <header class="header" ng-include="'starter/main-header.html'"></header>
@@ -223,9 +223,9 @@ desired effect
                     页签操作<span class="caret"></span>
                 </button>
                 <ul role="menu" class="dropdown-menu dropdown-menu-right">
-                    <li><a class="tabCloseCurrent" href="javascript:void();">关闭当前</a></li>
-                    <li><a class="tabCloseOther" href="javascript:void();">关闭其他</a></li>
-                    <li><a class="tabCloseAll" href="javascript:void();">全部关闭</a></li>
+                    <li><a class="tabCloseCurrent" href="javascript:void(0);">关闭当前</a></li>
+                    <li><a class="tabCloseOther" href="javascript:void(0);">关闭其他</a></li>
+                    <li><a class="tabCloseAll" href="javascript:void(0);">全部关闭</a></li>
                 </ul>
             </div>
             <a href="#" class="roll-nav roll-right tabReload"><i class="fa fa-refresh"></i> 刷新</a>
