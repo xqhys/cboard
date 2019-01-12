@@ -1,114 +1,89 @@
 <nav class="navbar-default navbar-static-side" role="navigation">
     <div class="sidebar-collapse">
         <ul class="nav clearfix" id="side-menu">
-            <li class="active">
+            <li class="treeview" ui-sref-active="active">
                 <a href="#">
-                    <i class="fa fa-gear"></i>
-                    <span class="nav-label">系统管理</span>
+                    <i class="fa fa-th"></i>
+                    <span>{{'SIDEBAR.MY_DASHBOARD'|translate}}</span>
                     <span class="fa arrow"></span>
                 </a>
-                <ul class="nav nav-second-level collapse in clearfix" aria-expanded="true" style="">
-                    <li>
-                        <a class="menuItem" href="#1" data-index="2">用户管理</a>
+                <ul class="nav nav-second-level collapse">
+                    <li ui-sref-active="active" ng-repeat="b in boardList | filter:{userId:user.userId}:true">
+                        <a ui-sref="mine.view({id:b.id})" class="menuItem">{{b.name}}</a>
                     </li>
-                    <li>
-                        <a class="menuItem" href="#2" data-index="3">角色管理</a>
-
-
-                    </li>
-                    <li>
-                        <a class="menuItem" href="#3" data-index="4">菜单管理</a>
-
-
-                    </li>
-                    <li>
-                        <a class="menuItem" href="#4" data-index="5">部门管理</a>
-
-
-                    </li>
-                    <li>
-                        <a class="menuItem" href="#5" data-index="6">岗位管理</a>
-
-
-                    </li>
-                    <li>
-                        <a class="menuItem" href="#6" data-index="7">字典管理</a>
-
-
-                    </li>
-                    <li>
-                        <a class="menuItem" href="#7" data-index="8">参数设置</a>
-
-
-                    </li>
-                    <li>
-                        <a class="menuItem" href="#8" data-index="9">通知公告</a>
-
-
-                    </li>
-                    <li class="active">
-
-                        <a href="#">日志管理<span class="fa arrow"></span></a>
-                        <ul class="nav nav-third-level collapse in" aria-expanded="true" style="">
-                            <li><a class="menuItem" href="#9" data-index="10">操作日志</a></li>
-                            <li><a class="menuItem" href="#10" data-index="11">登录日志</a></li>
+                </ul>
+            </li>
+            <!-- DashBoard -->
+            <li ui-sref-active="active">
+                <a href="#">
+                    <i class="fa fa-th"></i>
+                    <span>{{'SIDEBAR.C_DASHBOARD'|translate}}</span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level collapse">
+                    <li ui-sref-active="active" ng-repeat="c in categoryList | hasBoards : boardList">
+                        <a>
+                            <i class="fa fa-folder"></i>
+                            {{c.name}}
+                            <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li ui-sref-active="active" ng-repeat="b in boardList | filter:{categoryId:c.id}:true">
+                                <a ui-sref="dashboard.category.view({id:b.id,category:c.name})">{{b.name}}</a>
+                            </li>
                         </ul>
                     </li>
                 </ul>
             </li>
-            <li>
+            <!-- Config -->
+            <li ui-sref-active="active" ng-if="isShowMenu('config')">
                 <a href="#">
-                    <i class="fa fa-video-camera"></i>
-                    <span class="nav-label">系统监控</span>
+                    <i class="fa fa-gear"></i>
+                    <span>{{'SIDEBAR.CONFIG'|translate}}</span>
                     <span class="fa arrow"></span>
+                </span>
                 </a>
                 <ul class="nav nav-second-level collapse">
-                    <li>
-                        <a class="menuItem" href="#" data-index="12">在线用户</a>
-
-
+                    <li ui-sref-active="active" ng-if="isShowMenu('config.datasource')">
+                        <a ui-sref="config.datasource" class="menuItem">{{'SIDEBAR.DATA_SOURCE'|translate}}</a>
                     </li>
-                    <li>
-                        <a class="menuItem" href="#" data-index="13">定时任务</a>
-
-
+                    <li ui-sref-active="active" ng-if="isShowMenu('config.dataset')">
+                        <a ui-sref="config.dataset" class="menuItem">{{'SIDEBAR.DATASET'|translate}}</a>
                     </li>
-                    <li>
-                        <a class="menuItem" href="#" data-index="14">数据监控</a>
-
-
+                    <li ui-sref-active="active" ng-if="isShowMenu('config.widget')">
+                        <a ui-sref="config.widget" class="menuItem">{{'SIDEBAR.WIDGET'|translate}}</a>
                     </li>
-                    <li>
-                        <a class="menuItem" href="#" data-index="15">服务监控</a>
-
-
+                    <li ui-sref-active="active" ng-if="isShowMenu('config.board')">
+                        <a ui-sref="config.board" class="menuItem">{{'SIDEBAR.DASHBOARD'|translate}}</a>
+                    </li>
+                    <li ui-sref-active="active" ng-if="isShowMenu('config.category')">
+                        <a ui-sref="config.category" class="menuItem">{{'SIDEBAR.DASHBOARD_CATEGORY'|translate}}</a>
+                    </li>
+                    <li ui-sref-active="active" ng-if="isShowMenu('config.job')">
+                        <a ui-sref="config.job" class="menuItem">{{'SIDEBAR.JOB'|translate}}</a>
+                    </li>
+                    <li ui-sref-active="active" ng-if="isShowMenu('config.role')">
+                        <a ui-sref="config.role" class="menuItem">{{'SIDEBAR.SHARE_RESOURCE'|translate}}</a>
                     </li>
                 </ul>
             </li>
-            <li>
+            <!-- Admin -->
+            <li ui-sref-active="active" ng-if="isShowMenu('admin')">
                 <a href="#">
                     <i class="fa fa-bars"></i>
-                    <span class="nav-label">系统工具</span>
-                    <span class="fa arrow"></span>
+                    <span>{{'SIDEBAR.ADMIN'|translate}}</span>
+                    <span class="fa arrow">
+                </span>
                 </a>
                 <ul class="nav nav-second-level collapse">
-                    <li>
-                        <a class="menuItem" href="#" data-index="16">表单构建</a>
-
-
-                    </li>
-                    <li>
-                        <a class="menuItem" href="#" data-index="17">代码生成</a>
-
-
-                    </li>
-                    <li>
-                        <a class="menuItem" href="#" data-index="18">系统接口</a>
-
-
+                    <li ui-sref-active="active" ng-if="isShowMenu('admin.user')">
+                        <a ui-sref="admin.user" class="menuItem">{{'SIDEBAR.USER_ADMIN'|translate}}</a>
                     </li>
                 </ul>
             </li>
+
         </ul>
     </div>
 </nav>

@@ -51,8 +51,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect.
     -->
-
     <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
+
     <script src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
     <script src="plugins/echart/echarts-3.6.2.min.js"></script>
     <!-- bmap-->
@@ -156,7 +156,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <link rel="stylesheet" href="plugins/colorpicker/bootstrap-colorpicker.min.css">
     <script src="plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
-
     <style>
         .modal-fit .modal-dialog {
             left: 0;
@@ -199,53 +198,11 @@ desired effect
 |               | sidebar-mini                            |
 |---------------------------------------------------------|
 -->
-<body class="hold-transition sidebar-mini fixed-sidebar full-height-layout gray-bg skin-default" style="overflow: hidden" ng-class="{'sidebar-collapse': liteMode}">
+<body class="fixed-sidebar full-height-layout gray-bg skin-default" style="overflow: hidden" ng-class="{'sidebar-collapse': liteMode}">
 <div class="wrapper" id="wrapper">
-
-    <!-- Main Header -->
     <header class="header" ng-include="'starter/main-header.html'"></header>
-    <!-- Left side column. contains the logo and sidebar -->
     <aside ng-include="'starter/main-sidebar.html'"></aside>
-
-    <!-- Content Wrapper. Contains page content -->
-    <div id="page-wrapper" class="content-wrapper gray-bg dashbard-1" ng-click="menuItem();">
-        <div class="row content-tabs">
-            <button class="roll-nav roll-left tabLeft">
-                <i class="fa fa-backward"></i>
-            </button>
-            <nav class="page-tabs menuTabs clearfix">
-                <div class="page-tabs-content clearfix">
-                    <a href="javascript:" class="active menuTab menu-index" data-id="/system/main">首页</a>
-                </div>
-            </nav>
-            <button class="roll-nav roll-right tabRight">
-                <i class="fa fa-forward"></i>
-            </button>
-            <div class="btn-group roll-nav roll-right">
-                <button class="dropdown J_tabClose" data-toggle="dropdown">
-                    页签操作<span class="caret"></span>
-                </button>
-                <ul role="menu" class="dropdown-menu dropdown-menu-right">
-                    <li><a class="tabCloseCurrent" href="javascript:void(0);">关闭当前</a></li>
-                    <li><a class="tabCloseOther" href="javascript:void(0);">关闭其他</a></li>
-                    <li><a class="tabCloseAll" href="javascript:void(0);">全部关闭</a></li>
-                </ul>
-            </div>
-            <a href="#" class="roll-nav roll-right tabReload"><i class="fa fa-refresh"></i> 刷新</a>
-        </div>
-
-        <div class="row mainContent" id="content-main">
-            <ui-view>
-
-            </ui-view>
-            <!--   <iframe class="BangZheng_iframe" name="iframe0" width="100%" height="100%" data-id="#(ctx)/system/main" src="#(ctx)/main" frameborder="0" seamless></iframe>-->
-        </div>
-
-        <div class="footer">
-            <div class="pull-right">© 2018 BangZheng Copyright</div>
-        </div>
-    </div>
-
+    <content ng-include="'starter/main-content.html'"></content>
 </div>
 <!-- ./wrapper -->
 
@@ -253,6 +210,7 @@ desired effect
 <script src="org/cboard/util/CBoardEChartRender.js"></script>
 <script src="org/cboard/util/CBoardCommonUtils.js"></script>
 <script src="org/cboard/util/CBoardKpiRender.js"></script>
+<script src="org/cboard/util/CBoardDemoRender.js"></script>
 <script src="org/cboard/util/CBoardTableRender.js"></script>
 <script src="org/cboard/util/CBoardMapRender.js"></script>
 <!--<script src="org/cboard/util/CBoardGisRender.js"></script>-->
@@ -291,6 +249,7 @@ desired effect
 <script src="org/cboard/service/chart/chartDataProcess.js"></script>
 <script src="org/cboard/service/chart/chartFunnelService.js"></script>
 <script src="org/cboard/service/chart/chartKpiService.js"></script>
+<script src="org/cboard/service/chart/chartDemoService.js"></script>
 <script src="org/cboard/service/chart/chartLineService.js"></script>
 <script src="org/cboard/service/chart/chartContrastService.js"></script>
 <script src="org/cboard/service/chart/chartPieService.js"></script>
@@ -318,7 +277,6 @@ desired effect
 <script src="plugins/FineMap/plugin.js"></script>
 <!--<script src="plugins/FineMap/.js"></script>-->
 
-
 <!-- 二次开发相关js -->
 <script src="theme/static/js/plugins/metisMenu/jquery.metisMenu.js"></script>
 <script src="theme/static/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
@@ -329,7 +287,7 @@ desired effect
 <script src="theme/static/ajax/libs/fullscreen/jquery.fullscreen.js"></script>
 
 
-<script type="text/ng-template" id="echartContent">
+<!--<script type="text/ng-template" id="echartContent">
     <div class="col-md-{{widget.width}}">
         <div class="box box-solid" style="z-index: 99;">
             <div class="box-header" ng-mouseover="x=true" ng-mouseleave="x=false">
@@ -381,7 +339,6 @@ desired effect
             </div>
         </div>
     </div>
-</script>
-
+</script>-->
 </body>
 </html>

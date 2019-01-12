@@ -3,7 +3,7 @@
  */
 cBoard.service('IndexCss', function () {
     this.setIndexCss = function ($scope) {
-        window.onload = function () {
+        $(window).load(function () {
             // MetsiMenu
             $('#side-menu').metisMenu();
             // 横竖菜单的切换
@@ -414,8 +414,7 @@ cBoard.service('IndexCss', function () {
                 });
                 $('.page-tabs-content').css("margin-left", "0");
             });
-
-        }
+        });
 
         //退出系统
         $scope.logout = function () {
