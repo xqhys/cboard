@@ -918,6 +918,9 @@ cBoard.controller('widgetCtrl', function ($scope, $state, $stateParams, $http, $
                         case 'kpi':
                             $scope.previewDivWidth = 6;
                             break;
+                        case 'demo':
+                            $scope.previewDivWidth = 6;
+                            break;
                         case 'table':
                             $scope.previewDivWidth = 12;
                             break;

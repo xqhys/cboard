@@ -1,0 +1,137 @@
+.webuploader-container {
+    position: relative;
+}
+
+.webuploader-element-invisible {
+    position: absolute !important;
+    clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+    clip: rect(1px, 1px, 1px, 1px);
+}
+
+/*.webuploader-pick {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    background: #028ffb;
+    height: 20px;
+    padding: 5px 10px;
+    margin: 18px 20px 0px 0px;
+    font-size: 14px;
+    font-family: "微软雅黑";
+    line-height: 20px;
+    color: #fff;
+    text-align: center;
+    overflow: hidden;
+    border: none;
+}*/
+/*start 修改默认的文件上传按钮样式*/
+.webuploader-container {
+    position: relative;
+    float: left;
+}
+
+.webuploader-pick {
+    position: relative;
+    float: left;
+    width: 100px;
+    height: 90px;
+    cursor: pointer;
+    background-color: #fcfeff;
+    background-image: url("../../../img/icons/icon-add-file.png");
+    background-repeat: no-repeat;
+    background-position: center 20px;
+    border: 1px dashed #0078ff;
+    color: #0078ff;
+    padding: 5px 10px;
+    margin: 10px 10px 0px 0px;
+    font-size: 14px;
+    font-family: "微软雅黑";
+    line-height: 120px;
+    text-align: center;
+    overflow: hidden;
+}
+
+/*end 修改默认的文件上传按钮样式*/
+/*.webuploader-pick-hover {
+    background: #0276cf;
+}*/
+
+.webuploader-pick-disable {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/*文件上传的样式*/
+.uploader-list {
+    margin-top: 10px;
+}
+
+.uploader-list .item {
+    width: 100px;
+    height: 90px;
+    margin-right: 10px;
+    background-color: #fff;
+    display: inline-block;
+    border: 1px solid #d6e0ea;
+    font-size: 14px;
+    position: relative;
+}
+
+.uploader-list .item .info {
+    position: absolute;
+    margin: 0;
+    bottom: 0;
+    height: 25px;
+    line-height: 25px;
+    width: 100%;
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow: clip;
+    white-space: nowrap;
+    text-align: center;
+    font-weight: normal;
+    border-top: 1px solid #d6e0ea;
+
+}
+
+.uploader-list .item .img-file {
+    width: 100%;
+    height: 64px;
+    background: url("../../../img/icons/icon-word.png") center no-repeat;
+}
+.issued-instruct{
+    display: none;
+}
+.uploader-list .item .shadow-upload {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    height: 0;
+    background-color: rgba(6, 36, 57, 0.7);
+}
+.uploader-list .item .img-file:hover{
+
+}
+.uploader-list .item .shadow-upload .shadow-upload-child {
+    margin: 6px auto;
+    color: #fff;
+    text-align: center;
+}
+
+.uploader-list .item .shadow-upload .shadow-upload-child span {
+    font-size: 0;
+    display: inline-block;
+    margin: 0 5px;
+    width: 20px;
+    height: 20px;
+}
+
+.uploader-list .item .shadow-upload .shadow-upload-child .del-file {
+    background: url("../../../img/icons/icon-del-file.png") no-repeat;
+}
+
+.uploader-list .item .shadow-upload .shadow-upload-child .loading-file {
+    background: url("../../../img/icons/icon-load-file.png") no-repeat;
+}

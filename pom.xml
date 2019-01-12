@@ -357,6 +357,12 @@
             <version>2.4.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.github.penggle</groupId>
+            <artifactId>kaptcha</artifactId>
+            <version>2.3.2</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -402,7 +408,7 @@
                         <port>8080</port>
                     </httpConnector>
                     <webAppConfig>
-                        <contextPath>/</contextPath>
+                        <contextPath>/cboard</contextPath>
                     </webAppConfig>
                 </configuration>
             </plugin>
