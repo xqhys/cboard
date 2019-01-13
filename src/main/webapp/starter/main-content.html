@@ -1,4 +1,4 @@
-<div id="page-wrapper" class="content-wrapper gray-bg dashbard-1" ng-click="menuItem();">
+<div id="page-wrapper" class="gray-bg dashbard-1">
     <div class="row content-tabs">
         <button class="roll-nav roll-left tabLeft">
             <i class="fa fa-backward"></i>
@@ -24,13 +24,11 @@
         <a href="#" class="roll-nav roll-right tabReload"><i class="fa fa-refresh"></i> 刷新</a>
     </div>
 
-    <div class="row mainContent" id="content-main">
+    <div class="row mainContent" id="content-main" style="overflow-y:scroll;">
         <ui-view>
 
         </ui-view>
     </div>
 
-    <div class="footer">
-        <div class="pull-right">© 2018 BangZheng Copyright</div>
-    </div>
+    <footer ng-include="'starter/main-footer.html'"></footer>
 </div>
