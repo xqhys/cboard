@@ -202,11 +202,12 @@ cBoard.service('IndexCss', function () {
                 }
             });
 
-            function menuItem() {
+            function menuItem(menuItem) {
                 // 获取标识数据
-                var dataUrl = $(this).attr('href'),
-                    dataIndex = $(this).data('index'),
-                    menuName = $.trim($(this).text()),
+                var dataUrl = $(menuItem).attr('href'),
+                    uiSref = $(menuItem).attr('ui-sref'),
+                    dataIndex = $(menuItem).data('index'),
+                    menuName = $.trim($(menuItem).text()),
                     flag = true;
                 if (dataUrl == undefined || $.trim(dataUrl).length == 0) return false;
 
@@ -231,7 +232,7 @@ cBoard.service('IndexCss', function () {
 
                 // 选项卡菜单不存在
                 if (flag) {
-                    var str = '<a href="javascript:;" class="active menuTab" data-id="' + dataUrl + '">' + menuName + ' <i class="fa fa-times-circle"></i></a>';
+                    var str = '<a ui-sref="'+uiSref+'" href="'+dataUrl+'" class="active menuTab" data-id="' + dataUrl + '">' + menuName + ' <i class="fa fa-times-circle"></i></a>';
                     $('.menuTab').removeClass('active');
 
                     /*  // 添加选项卡对应的iframe
@@ -251,7 +252,10 @@ cBoard.service('IndexCss', function () {
                 return false;
             }
 
-            $('.menuItem').on('click', menuItem);
+            $('.menuItem').click(function () {
+                menuItem(this);
+            });
+            // $('.menuItem').on('click', menuItem);
 
             // 关闭选项卡菜单
             function closeTab() {
