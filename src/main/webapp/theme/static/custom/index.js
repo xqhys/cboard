@@ -335,6 +335,9 @@ cBoard.service('IndexCss', function () {
                     });
                     scrollToTab($('.menuTab.active'));
                 }
+
+                $('.menuTab.active').trigger("click");
+
                 return false;
             }
 
@@ -417,8 +420,11 @@ cBoard.service('IndexCss', function () {
                     $(this).addClass("active");
                 });
                 $('.page-tabs-content').css("margin-left", "0");
+
+                $('.menuTab.active').trigger("click");
             });
         });
+
 
         //退出系统
         $scope.logout = function () {

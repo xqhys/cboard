@@ -1,63 +1,38 @@
-$(function () {
-    validateRule();
-    $(".i-checks").iCheck({checkboxClass: "icheckbox_square-green-login"});
-    $('.imgcode').click(function () {
-        var url = ctx + "/randomCode?type=" + captchaType + "&s=" + Math.random();
-        $(".imgcode").attr("src", url);
-    });
-});
+//获取验证码图片
+function changeCaptcha(){
+    $("#loginCode").attr("src","captcha/getCaptchaCode.do");
+}
 
-$.validator.setDefaults({
-    submitHandler: function () {
-        login();
+//验证输入的验证码
+function checkCaptcha(){
+    if( $(".login-input")[0].value == ""){
+        $("#failure-username").html('&nbsp;&nbsp;&nbsp;&nbsp;请输入用户名');
+        return;
     }
-});
+    if( $(".login-input")[1].value == ""){
+        $("#failure-password").html('&nbsp;&nbsp;&nbsp;&nbsp;请输入密码');
+        return;
+    }
+    if( $(".login-input")[2].value == ""){
+        $("#failure-code").html('&nbsp;&nbsp;&nbsp;&nbsp;请输入验证码');
+        return;
+    }
 
-function login() {
-    $.modal.loading($("#btnSubmit").data("loading"));
-    var username = $.common.trim($("input[name='username']").val());
-    var password = $.common.trim($("input[name='password']").val());
-    var validateCode = $("input[name='checkCode']").val();
-    var rememberMe = $("input[name='rememberme']").is(':checked');
     $.ajax({
-        type: "post",
-        url: ctx + "/user/userLogin",
-        data: {
-            "username": username,
-            "password": password,
-            "validateCode": validateCode,
-            "rememberMe": rememberMe
-        },
-        success: function (r) {
-            if (200 == r.statusCode) {
-                location.href = ctx + '/';
-            } else {
-                $.modal.closeLoading();
-                $('.imgcode').click();
-                $.modal.msg(r.message);
+        type:'post',
+        async : false,
+        url:'captcha/checkCaptchaCode.do',
+        data:{"captchaCode" : $(".login-input")[2].value},
+        success:function(res){
+            if(res == "success"){
+                document.forms[0].submit();
+            }else {
+                $("#failure-code").html('&nbsp;&nbsp;&nbsp;&nbsp;验证码错误');
             }
         }
     });
 }
 
-function validateRule() {
-    var icon = "<i class='fa fa-times-circle'></i> ";
-    $("#signupForm").validate({
-        rules: {
-            username: {
-                required: true
-            },
-            password: {
-                required: true
-            }
-        },
-        messages: {
-            username: {
-                required: icon + "请输入您的用户名",
-            },
-            password: {
-                required: icon + "请输入您的密码",
-            }
-        }
-    })
+if(location.search.substr(1) == "error"){
+    $("#failure-login").text("登陆失败");
 }
