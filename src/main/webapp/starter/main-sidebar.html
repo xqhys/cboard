@@ -8,7 +8,7 @@
                     <span class="fa arrow"></span>
                 </a>
                 <ul class="nav nav-second-level collapse">
-                    <li ui-sref-active="active" ng-repeat="b in boardList | filter:{userId:user.userId}:true">
+                    <li ng-repeat="b in boardList | filter:{userId:user.userId}:true">
                         <a ui-sref="mine.view({id:b.id})" class="menuItem">{{b.name}}</a>
                     </li>
                 </ul>
@@ -21,7 +21,7 @@
                     <span class="fa arrow"></span>
                 </a>
                 <ul class="nav nav-second-level collapse">
-                    <li ui-sref-active="active" ng-repeat="c in categoryList | hasBoards : boardList">
+                    <li ng-repeat="c in categoryList | hasBoards : boardList">
                         <a>
                             <i class="fa fa-folder"></i>
                             {{c.name}}
@@ -30,7 +30,7 @@
                         </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li ui-sref-active="active" ng-repeat="b in boardList | filter:{categoryId:c.id}:true">
+                            <li ng-repeat="b in boardList | filter:{categoryId:c.id}:true">
                                 <a ui-sref="dashboard.category.view({id:b.id,category:c.name})">{{b.name}}</a>
                             </li>
                         </ul>
@@ -38,45 +38,45 @@
                 </ul>
             </li>
             <!-- Config -->
-            <li ui-sref-active="active" ng-if="isShowMenu('config')">
+            <li ng-if="isShowMenu('config')">
                 <a>
                     <i class="fa fa-gear"></i>
                     <span>{{'SIDEBAR.CONFIG'|translate}}</span>
                     <span class="fa arrow"></span>
                 </a>
                 <ul class="nav nav-second-level collapse">
-                    <li ui-sref-active="active" ng-if="isShowMenu('config.datasource')">
+                    <li ng-if="isShowMenu('config.datasource')">
                         <a ui-sref="config.datasource" class="menuItem">{{'SIDEBAR.DATA_SOURCE'|translate}}</a>
                     </li>
-                    <li ui-sref-active="active" ng-if="isShowMenu('config.dataset')">
+                    <li ng-if="isShowMenu('config.dataset')">
                         <a ui-sref="config.dataset" class="menuItem">{{'SIDEBAR.DATASET'|translate}}</a>
                     </li>
-                    <li ui-sref-active="active" ng-if="isShowMenu('config.widget')">
+                    <li ng-if="isShowMenu('config.widget')">
                         <a ui-sref="config.widget" class="menuItem">{{'SIDEBAR.WIDGET'|translate}}</a>
                     </li>
-                    <li ui-sref-active="active" ng-if="isShowMenu('config.board')">
+                    <li ng-if="isShowMenu('config.board')">
                         <a ui-sref="config.board" class="menuItem">{{'SIDEBAR.DASHBOARD'|translate}}</a>
                     </li>
-                    <li ui-sref-active="active" ng-if="isShowMenu('config.category')">
+                    <li ng-if="isShowMenu('config.category')">
                         <a ui-sref="config.category" class="menuItem">{{'SIDEBAR.DASHBOARD_CATEGORY'|translate}}</a>
                     </li>
-                    <li ui-sref-active="active" ng-if="isShowMenu('config.job')">
+                    <li ng-if="isShowMenu('config.job')">
                         <a ui-sref="config.job" class="menuItem">{{'SIDEBAR.JOB'|translate}}</a>
                     </li>
-                    <li ui-sref-active="active" ng-if="isShowMenu('config.role')">
+                    <li ng-if="isShowMenu('config.role')">
                         <a ui-sref="config.role" class="menuItem">{{'SIDEBAR.SHARE_RESOURCE'|translate}}</a>
                     </li>
                 </ul>
             </li>
             <!-- Admin -->
-            <li ui-sref-active="active" ng-if="isShowMenu('admin')">
+            <li ng-if="isShowMenu('admin')">
                 <a href="#">
                     <i class="fa fa-bars"></i>
                     <span>{{'SIDEBAR.ADMIN'|translate}}</span>
                     <span class="fa arrow"></span>
                 </a>
                 <ul class="nav nav-second-level collapse">
-                    <li ui-sref-active="active" ng-if="isShowMenu('admin.user')">
+                    <li ng-if="isShowMenu('admin.user')">
                         <a ui-sref="admin.user" class="menuItem">{{'SIDEBAR.USER_ADMIN'|translate}}</a>
                     </li>
                 </ul>
