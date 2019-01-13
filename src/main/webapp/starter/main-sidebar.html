@@ -39,11 +39,10 @@
             </li>
             <!-- Config -->
             <li ui-sref-active="active" ng-if="isShowMenu('config')">
-                <a href="#">
+                <a>
                     <i class="fa fa-gear"></i>
                     <span>{{'SIDEBAR.CONFIG'|translate}}</span>
                     <span class="fa arrow"></span>
-                </span>
                 </a>
                 <ul class="nav nav-second-level collapse">
                     <li ui-sref-active="active" ng-if="isShowMenu('config.datasource')">
@@ -74,8 +73,7 @@
                 <a href="#">
                     <i class="fa fa-bars"></i>
                     <span>{{'SIDEBAR.ADMIN'|translate}}</span>
-                    <span class="fa arrow">
-                </span>
+                    <span class="fa arrow"></span>
                 </a>
                 <ul class="nav nav-second-level collapse">
                     <li ui-sref-active="active" ng-if="isShowMenu('admin.user')">
