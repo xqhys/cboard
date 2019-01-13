@@ -9,7 +9,7 @@
                 </a>
                 <ul class="nav nav-second-level collapse">
                     <li ng-repeat="b in boardList | filter:{userId:user.userId}:true">
-                        <a ui-sref="mine.view({id:b.id})" class="menuItem">{{b.name}}</a>
+                        <a ui-sref="mine.view({id:b.id})" >{{b.name}}</a>
                     </li>
                 </ul>
             </li>

@@ -165,7 +165,6 @@ cBoard.service('dataService', function ($http, $q, updateService) {
             cfg.values = _.map(dataSeries, function (s) {
                 return {column: s.name, aggType: s.aggregate};
             });
-
             $http.post("dashboard/getAggregateData.do", {
                 datasourceId: datasource,
                 query: angular.toJson(query),

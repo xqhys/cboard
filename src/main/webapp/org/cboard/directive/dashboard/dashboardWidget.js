@@ -30,18 +30,6 @@ cBoard.directive('dashboardWidget', function ($compile, $templateCache, dataServ
         scope.widget.render(ndWrapper, null, scope);
     };
 
-    var renderDemo= function (scope, element, attrs) {
-        // 加载 webapp\starter.html 中的渲染html模板
-        var template = $templateCache.get("chartContent");
-        // 渲染模板的高度
-        scope.myheight = scope.row.height ? (scope.row.height - 44) : 300;
-        var link = $compile(template);
-        element.append(link(scope));
-        var ndWrapper = $(element).find('.box-body');
-        // 调用 webapp\org\cboard\service\chart\chartService.js 的render方法
-        scope.widget.render(ndWrapper, null, scope);
-    };
-
     var renderTable = function (scope, element, attrs) {
         var template = $templateCache.get("chartContent");
         scope.myheight = scope.row.height ? (scope.row.height - 44) : 500;
@@ -65,9 +53,6 @@ cBoard.directive('dashboardWidget', function ($compile, $templateCache, dataServ
                             break;
                         case 'kpi':
                             renderKpi(scope, element, attrs);
-                            break;
-                        case 'demo':
-                            renderDemo(scope, element, attrs);
                             break;
                         case 'table':
                             renderTable(scope, element, attrs);

@@ -3,7 +3,7 @@
  */
 'use strict';
 cBoard.service('chartService', function($q, dataService, chartPieService, chartLineService, chartFunnelService,
-  chartSankeyService, chartTableService, chartKpiService, chartDemoService, chartRadarService,
+  chartSankeyService, chartTableService, chartKpiService, chartRadarService,
   chartMapService, chartScatterService, chartGaugeService, chartWordCloudService,
   chartTreeMapService, chartAreaMapService, chartHeatMapCalendarService, chartHeatMapTableService,
   chartLiquidFillService, chartContrastService, chartChinaMapService, chartChinaMapBmapService,
@@ -135,9 +135,6 @@ cBoard.service('chartService', function($q, dataService, chartPieService, chartL
         break;
       case 'kpi':
         chart = chartKpiService;
-        break;
-      case 'demo':
-        chart = chartDemoService;
         break;
       case 'table':
         chart = chartTableService;

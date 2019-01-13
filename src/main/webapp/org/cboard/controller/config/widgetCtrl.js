@@ -47,12 +47,6 @@ cBoard.controller('widgetCtrl', function ($scope, $state, $stateParams, $http, $
                 measure: translate('CONFIG.WIDGET.TIPS_DIM_NUM_1')
             },
             {
-                name: translate('CONFIG.WIDGET.DEMO'), value: 'demo', class: 'cDemo',
-                row: translate('CONFIG.WIDGET.TIPS_DIM_NUM_0'),
-                column: translate('CONFIG.WIDGET.TIPS_DIM_NUM_0'),
-                measure: translate('CONFIG.WIDGET.TIPS_DIM_NUM_1')
-            },
-            {
                 name: translate('CONFIG.WIDGET.FUNNEL'), value: 'funnel', class: 'cFunnel',
                 row: translate('CONFIG.WIDGET.TIPS_DIM_NUM_0_MORE'),
                 column: translate('CONFIG.WIDGET.TIPS_DIM_NUM_0'),
@@ -150,7 +144,7 @@ cBoard.controller('widgetCtrl', function ($scope, $state, $stateParams, $http, $
             "scatter": true, "gauge": true, "wordCloud": true, "treeMap": true,
             "heatMapCalendar": true, "heatMapTable": true, "liquidFill": true,
             "areaMap": true, "contrast": true,"chinaMap":true,"chinaMapBmap":true,
-            "relation":true, "worldMap": true, "demo": true
+            "relation":true, "worldMap": true
         };
 
         $scope.value_series_types = [
@@ -185,13 +179,6 @@ cBoard.controller('widgetCtrl', function ($scope, $state, $stateParams, $http, $
         ]
 
         $scope.kpi_styles = [
-            {name: translate('CONFIG.WIDGET.AQUA'), value: 'bg-aqua'},
-            {name: translate('CONFIG.WIDGET.RED'), value: 'bg-red'},
-            {name: translate('CONFIG.WIDGET.GREEN'), value: 'bg-green'},
-            {name: translate('CONFIG.WIDGET.YELLOW'), value: 'bg-yellow'}
-        ];
-
-        $scope.demo_styles = [
             {name: translate('CONFIG.WIDGET.AQUA'), value: 'bg-aqua'},
             {name: translate('CONFIG.WIDGET.RED'), value: 'bg-red'},
             {name: translate('CONFIG.WIDGET.GREEN'), value: 'bg-green'},
@@ -249,7 +236,6 @@ cBoard.controller('widgetCtrl', function ($scope, $state, $stateParams, $http, $
             line: {keys: 2, groups: -1, filters: -1, values: 2},
             pie: {keys: 2, groups: -1, filters: -1, values: 2},
             kpi: {keys: 0, groups: 0, filters: -1, values: 1},
-            demo: {keys: 0, groups: 0, filters: -1, values: 1},
             table: {keys: -1, groups: -1, filters: -1, values: -1},
             funnel: {keys: -1, groups: 0, filters: -1, values: 2},
             sankey: {keys: 2, groups: 2, filters: -1, values: 1},
@@ -454,7 +440,6 @@ cBoard.controller('widgetCtrl', function ($scope, $state, $stateParams, $http, $
             cleanPreview();
         };
 
-        //新增图标设计
         $scope.newWgt = function (curWidget) {
             $scope.curWidget = {};
             if (curWidget) {
@@ -697,18 +682,6 @@ cBoard.controller('widgetCtrl', function ($scope, $state, $stateParams, $http, $
                         v.style = 'bg-aqua';
                     });
                     break;
-                case 'demo':
-                    $scope.curWidget.config.values.push({name: '', cols: []});
-                    _.each(oldConfig.values, function (v) {
-                        _.each(v.cols, function (c) {
-                            $scope.curWidget.config.values[0].cols.push(c);
-                        });
-                    });
-                    $scope.curWidget.config.selects = angular.copy($scope.columns);
-                    _.each($scope.curWidget.config.values, function (v) {
-                        v.style = 'bg-aqua';
-                    });
-                    break;
                 case 'scatter':
                     var i = 0;
                     _.each(oldConfig.values, function (v) {
@@ -916,9 +889,6 @@ cBoard.controller('widgetCtrl', function ($scope, $state, $stateParams, $http, $
                             };
                             break;
                         case 'kpi':
-                            $scope.previewDivWidth = 6;
-                            break;
-                        case 'demo':
                             $scope.previewDivWidth = 6;
                             break;
                         case 'table':
@@ -1567,21 +1537,16 @@ cBoard.controller('widgetCtrl', function ($scope, $state, $stateParams, $http, $
         $scope.applyModelChanges = function () {
             return !$scope.ignoreChanges;
         };
-
-        //显示节点信息
         $scope.showInfo = function () {
             if (!checkTreeNode("info")) return;
             var content = getSelectedWidget();
             ModalUtils.info(content,"modal-info", "lg");
         };
-
-        //复制图表设计
         $scope.copyNode = function () {
             if (!checkTreeNode("copy")) return;
             $scope.copyWgt(getSelectedWidget());
         };
 
-        //修改图表设计
         $scope.editNode = function () {
             if (!checkTreeNode("edit")) return;
             var selectedNode = jstree_GetSelectedNodes(treeID)[0];
@@ -1589,13 +1554,10 @@ cBoard.controller('widgetCtrl', function ($scope, $state, $stateParams, $http, $
             $scope.editWgt(getSelectedWidget());
         };
 
-        //删除图表设计
         $scope.deleteNode = function () {
             if (!checkTreeNode("delete")) return;
             $scope.deleteWgt(getSelectedWidget());
         };
-
-        //搜索节点
         $scope.searchNode = function () {
             var para = {wgtName: '', dsName: '', dsrName: ''};
 
