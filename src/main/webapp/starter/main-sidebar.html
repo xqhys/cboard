@@ -1,7 +1,7 @@
 <nav class="navbar-default navbar-static-side" role="navigation">
     <div class="sidebar-collapse">
         <ul class="nav clearfix" id="side-menu">
-            <li class="treeview" ui-sref-active="active">
+            <li>
                 <a href="#">
                     <i class="fa fa-th"></i>
                     <span>{{'SIDEBAR.MY_DASHBOARD'|translate}}</span>
@@ -9,12 +9,12 @@
                 </a>
                 <ul class="nav nav-second-level collapse">
                     <li ng-repeat="b in boardList | filter:{userId:user.userId}:true">
-                        <a ui-sref="mine.view({id:b.id})" >{{b.name}}</a>
+                        <a class="menuItem" ui-sref="mine.view({id:b.id})" >{{b.name}}</a>
                     </li>
                 </ul>
             </li>
             <!-- DashBoard -->
-            <li ui-sref-active="active">
+            <li>
                 <a href="#">
                     <i class="fa fa-th"></i>
                     <span>{{'SIDEBAR.C_DASHBOARD'|translate}}</span>
@@ -22,16 +22,10 @@
                 </a>
                 <ul class="nav nav-second-level collapse">
                     <li ng-repeat="c in categoryList | hasBoards : boardList">
-                        <a>
-                            <i class="fa fa-folder"></i>
-                            {{c.name}}
-                            <span class="pull-right-container">
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li ng-repeat="b in boardList | filter:{categoryId:c.id}:true">
-                                <a ui-sref="dashboard.category.view({id:b.id,category:c.name})">{{b.name}}</a>
+                        <a href="#">{{c.name}}<span class="fa arrow"></span></a>
+                        <ul>
+                            <li class="nav nav-third-level collapse in" ng-repeat="b in boardList | filter:{categoryId:c.id}:true">
+                                <a class="menuItem" ui-sref="dashboard.category.view({id:b.id,category:c.name})">{{b.name}}</a>
                             </li>
                         </ul>
                     </li>
