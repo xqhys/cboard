@@ -1,9 +1,8 @@
 /**
  * Created by yfyuan on 2016/7/19.
  */
-cBoard.controller('cBoardCtrl', function ($rootScope, $scope, $location, $http, $q, $filter, $uibModal, ModalUtils, IndexCss) {
+cBoard.controller('cBoardCtrl', function ($rootScope, $scope, $location, $http, $q, $filter, $uibModal, ModalUtils) {
 
-    IndexCss.setIndexCss($scope);
     var translate = $filter('translate');
 
     $rootScope.alert = function (msg) {
@@ -72,11 +71,20 @@ cBoard.controller('cBoardCtrl', function ($rootScope, $scope, $location, $http, 
                             ModalUtils.alert(translate("COMMON.SUCCESS"), "modal-success", "sm");
                             $uibModalInstance.close();
                         } else {
-                            ModalUtils.alert(serviceStatus.msg, "modal-warning", "lg");
+                            $scope.flagError = "当前密码错误！";
+                            // ModalUtils.alert(serviceStatus.msg, "modal-warning", "lg");
                         }
                     });
                 };
             }
         });
     }
+
+    //退出系统
+   $scope.logout =  function (){
+        $.modal.confirm("确定退出系统吗？", function () {
+            document.location.replace('j_spring_cas_security_logout');
+        });
+    }
+
 });

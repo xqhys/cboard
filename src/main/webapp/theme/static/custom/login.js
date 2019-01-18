@@ -1,6 +1,6 @@
 //获取验证码图片
 function changeCaptcha(){
-    $("#loginCode").attr("src","captcha/getCaptchaCode.do");
+    $("#loginCode").attr("src","captcha/getCaptchaCode.do?id=" + new Date());
 }
 
 //验证输入的验证码
