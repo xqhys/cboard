@@ -71,7 +71,7 @@ cBoard.controller('cBoardCtrl', function ($rootScope, $scope, $location, $http, 
                             ModalUtils.alert(translate("COMMON.SUCCESS"), "modal-success", "sm");
                             $uibModalInstance.close();
                         } else {
-                            $scope.flagError = "当前密码错误！";
+                            $scope.flagError = "密码修改失败！";
                             // ModalUtils.alert(serviceStatus.msg, "modal-warning", "lg");
                         }
                     });
