@@ -209,7 +209,12 @@
                                         <div class="tab-content" style="min-height: 43vh;">
                                             <!-- 图表预览 -->
                                             <div class="tab-pane active" id="preview_widget2" ng-class="{'preview_widget2': 'active'}[tab]" style="min-height: 300px;height: 100%;overflow: hidden;">
-                                                <div ng-show="!loadingPre" id="preview_widget" style="min-height: 300px;"/>
+                                                <!--<div id="searchCondition" style="border: 1px solid red;width: 100px;height: 100px;float: right">-->
+                                                    <!--当天<input type="radio" name="radio_flags">-->
+                                                    <!--本月<input type="radio" name="radio_flags">-->
+                                                <!--</div>-->
+                                                <div ng-show="!loadingPre" id="preview_widget" style="min-height: 300px;">
+                                                </div>
                                                 <div class="overlay fa box box-solid" ng-show="loadingPre" style="min-height: 300px;">
                                                     <div class="box-header">
                                                         <!--<h3 class="box-title"></h3>-->
