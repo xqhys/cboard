@@ -1,11 +1,14 @@
 <ng-switch on="board.layout.type">
     <div ng-switch-when="timeline">
+        <!-- 时间轴布局 -->
         <div ng-include="'org/cboard/view/dashboard/layout/timeline.html'"></div>
     </div>
     <div ng-switch-when="cockpit">
+        <!-- 监控布局 -->
         <div ng-init="toCockpitView()"></div>
     </div>
     <div ng-switch-default>
+        <!-- 网络布局 -->
         <div ng-include="'org/cboard/view/dashboard/layout/grid.html'"></div>
     </div>
 </ng-switch>

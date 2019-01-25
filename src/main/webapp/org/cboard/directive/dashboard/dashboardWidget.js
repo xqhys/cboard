@@ -11,6 +11,10 @@ cBoard.directive('dashboardWidget', function ($compile, $templateCache, dataServ
         element.append(link(scope));
         var ndWrapper = $(element).find('.box-body');
         scope.widget.render(ndWrapper, null, scope);
+
+        
+
+
     };
 
     var renderMap = function (scope, element, attrs) {

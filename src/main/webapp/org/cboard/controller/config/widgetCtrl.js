@@ -2,7 +2,7 @@
  * Created by yfyuan on 2016/8/12.
  */
 'use strict';
-cBoard.controller('widgetCtrl', function ($scope, $state, $stateParams, $http, $uibModal, dataService, ModalUtils, updateService, $filter, chartService, $timeout, $compile) {
+cBoard.controller('widgetCtrl', function ($scope, $state, $stateParams, $http, $uibModal, dataService, ModalUtils, updateService, $filter, chartService, $timeout) {
 
         var translate = $filter('translate');
         var updateUrl = "dashboard/updateWidget.do";
@@ -836,26 +836,6 @@ cBoard.controller('widgetCtrl', function ($scope, $state, $stateParams, $http, $
             });
         };
 
-        $scope.searchCondition = function () {
-            var fg = {
-                "filters":
-                    [
-                        {
-                            "col": "goodsClass",
-                            "values": [
-                                "男士衬衫"
-                            ],
-                            "type": "="
-                        }
-                    ],
-                "group": "商品类型"
-            }
-
-            $scope.curWidget.config.filters.push(fg);
-           // alert(JSON.stringify($scope.curWidget.config.filters))
-            $scope.preview();
-        }
-
         $scope.preview = function () {
             $('#preview_widget').html("");
             $timeout(function () {
@@ -951,21 +931,8 @@ cBoard.controller('widgetCtrl', function ($scope, $state, $stateParams, $http, $
                             break;
                     }
                     $scope.loadingPre = false;
-                }, null, !$scope.loadFromCache);
+                }, $scope, !$scope.loadFromCache);
             }
-
-            var searchCondition = "<div id='searchCondition' style='border: 0px solid red;width: 200px;height: 50px;float: right;margin-right:30px;'>" +
-                "<table>" +
-                "<tr>" +
-                "<td><input type='radio' name='radio_flag' key='goodsClass' value='男士毛衣' ng-click='searchCondition()'>男士毛衣</td>" +
-                "<td>&nbsp;&nbsp;<input type='radio' name='radio_flag' key='goodsClass' value='男士衣裤' ng-click='searchCondition()'>男士衣裤</td>" +
-                "</tr>" +
-                "</table>" +
-                "</div>";
-
-            var $searchCondition = $compile(searchCondition)($scope);
-            var render = new CBoardEChartRender($('#preview'));
-            $(render.ecc.getDom()).prepend($searchCondition);
 
         };
 

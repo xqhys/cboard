@@ -20,7 +20,7 @@ angular.module('cBoard').config(['$stateProvider', function ($stateProvider) {
             abstract: true,
             template: '<div ui-view></div>'
         })
-        .state('mine.view', {
+        .state('mine.view', { // 看板
             url: '/{id}',
             params: {id: null},
             templateUrl: 'org/cboard/view/dashboard/view.html',
@@ -49,7 +49,7 @@ angular.module('cBoard').config(['$stateProvider', function ($stateProvider) {
             templateUrl: 'org/cboard/view/config/board.html',
             controller: 'boardCtrl'
         })
-        .state('config.widget', {
+        .state('config.widget', { // 图表设计
             url: '/widget?id&datasetId',
             params: {id: null, datasetId: null},
             templateUrl: 'org/cboard/view/config/widget.html',

@@ -2,7 +2,7 @@
  * Created by sileiH on 2016/8/2.
  */
 'use strict';
-cBoard.controller('cockpitLayoutCtrl', function ($stateParams, $state, chartService, $q) {
+cBoard.controller('cockpitLayoutCtrl', function ($scope, $stateParams, $state, chartService, $q) {
     //初始化样式
     $("body").addClass("sidebar-collapse");
     var window_height = $(window).height();
@@ -649,12 +649,12 @@ cBoard.controller('cockpitLayoutCtrl', function ($stateParams, $state, chartServ
                         var dataset = _.find(dsres, function (e) {
                             return e.id == res.data.datasetId;
                         });
-                        loadWidget($("#" + domId + "_01"), res.data, null, null, false);
+                        loadWidget($("#" + domId + "_01"), res.data, null, $scope, false);
                         if (vm._data.viewType) {
                             if (dataset.data.interval || dataset.data.interval > 0) {
                                 //real time load task
                                 setInterval(function () {
-                                    loadWidget($("#" + domId + "_01"), res.data, null, null, false);
+                                    loadWidget($("#" + domId + "_01"), res.data, null, $scope, false);
                                 }, dataset.data.interval * 1000);
                             }
                         }
