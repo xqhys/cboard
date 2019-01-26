@@ -311,6 +311,7 @@
       "HIERARCHY": "Hierarchy",
       "MEASURE": "Measure",
       "FILTER": "Filter",
+      "SEARCH": "SEARCH",
       "UNCLASSIFY": "Selects",
       "TIP_EDIT_ALIAS": "Alias",
       "TIP_ADD_HIERARCHY": "Add Hierarchy",

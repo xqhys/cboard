@@ -312,6 +312,7 @@
       "HIERARCHY": "维度层级",
       "MEASURE": "指标列",
       "FILTER": "过滤器",
+      "SEARCH": "过滤条件",
       "UNCLASSIFY": "未分类列",
       "TIP_EDIT_ALIAS": "编辑别名",
       "TIP_ADD_HIERARCHY": "添加层级",
