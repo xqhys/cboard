@@ -25,14 +25,14 @@
 .tree li {
     list-style-type: none;
     margin: 0;
-    padding: 2px 5px 2px 15px;
+    padding: 2px 5px 2px 5px;
     position: relative;
     white-space:nowrap;
 }
 
 .tree li::before, .tree li::after {
     content: '';
-    left: 5px;
+    left: -20px;
     position: absolute;
     right: auto
 }
@@ -53,8 +53,7 @@
 }
 
 .tree li.parent_li > span {
-    cursor: pointer;
-    margin-left: -15px;
+    cursor: pointer
 }
 
 .tree > ul > li::before, .tree > ul > li::after {
