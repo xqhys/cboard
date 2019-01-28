@@ -14,6 +14,9 @@ cBoard.service('updateService', function () {
         if (!config.filters) {
             config.filters = [];
         }
+        if (!config.searches) {
+            config.searches = [];
+        }
 
         switch (config.chart_type) {
             case 'pie':

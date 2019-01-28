@@ -108,6 +108,7 @@
 <body ng-app="cBoard" ng-controller="renderCtrl">
 <div ng-switch="board.layout.type">
     <div ng-switch-when="cockpit">
+        <!-- 报表 -->
         <div ng-include="'org/cboard/view/dashboard/layout/cockpit.html'"></div>
     </div>
     <div ng-switch-default>

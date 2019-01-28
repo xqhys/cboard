@@ -5,19 +5,30 @@
 cBoard.directive('dashboardWidget', function ($compile, $templateCache, dataService, chartService) {
 
     var renderEchart = function (scope, element, attrs) {
+        scope.curWidget = {};
+        scope.curWidget.config = {};
+        if(!scope.widget.widget.data.config.searches){
+            scope.curWidget.config.searches = [];
+        }else {
+            scope.curWidget.config.searches = scope.widget.widget.data.config.searches;
+        }
         var template = $templateCache.get("echartContent");
         scope.myheight = scope.row.height ? (scope.row.height - 44) : 300;
         var link = $compile(template);
         element.append(link(scope));
         var ndWrapper = $(element).find('.box-body');
+        debugger;
         scope.widget.render(ndWrapper, null, scope);
-
-        
-
-
     };
 
     var renderMap = function (scope, element, attrs) {
+        scope.curWidget = {};
+        scope.curWidget.config = {};
+        if(!scope.widget.widget.data.config.searches){
+            scope.curWidget.config.searches = [];
+        }else {
+            scope.curWidget.config.searches = scope.widget.widget.data.config.searches;
+        }
         var template = $templateCache.get("chartContent");
         scope.myheight = scope.row.height ? (scope.row.height - 44) : 300;
         var link = $compile(template);
@@ -27,6 +38,13 @@ cBoard.directive('dashboardWidget', function ($compile, $templateCache, dataServ
     };
 
     var renderKpi = function (scope, element, attrs) {
+        scope.curWidget = {};
+        scope.curWidget.config = {};
+        if(!scope.widget.widget.data.config.searches){
+            scope.curWidget.config.searches = [];
+        }else {
+            scope.curWidget.config.searches = scope.widget.widget.data.config.searches;
+        }
         var template = $templateCache.get("kpiContent");
         var aa = $compile(template)(scope);
         element.append(aa);
@@ -35,6 +53,13 @@ cBoard.directive('dashboardWidget', function ($compile, $templateCache, dataServ
     };
 
     var renderTable = function (scope, element, attrs) {
+        scope.curWidget = {};
+        scope.curWidget.config = {};
+        if(!scope.widget.widget.data.config.searches){
+            scope.curWidget.config.searches = [];
+        }else {
+            scope.curWidget.config.searches = scope.widget.widget.data.config.searches;
+        }
         var template = $templateCache.get("chartContent");
         scope.myheight = scope.row.height ? (scope.row.height - 44) : 500;
         var aa = $compile(template)(scope);

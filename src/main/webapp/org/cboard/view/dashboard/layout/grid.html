@@ -37,6 +37,7 @@
             <div ng-switch-default>
                 <div ng-repeat="widget in row.widgets track by $index">
                     <div ng-if="widget.show" ng-show="!widget.sourceId || widget.showDiv">
+                        <!-- 加载报表数据 -->
                         <dashboard-widget ng-show="widget.loading == false"></dashboard-widget>
                     </div>
                     <div ng-if="widget.hasRole != false && (widget.loading || !widget.show)" class="col-md-{{widget.width}}" ng-style="{height:row.height?row.height:300+'px'}">

@@ -142,6 +142,7 @@
       "ADD": "Add",
       "OPTIONAL": "Selects",
       "ALIAS": "Alias",
+      "TYPE": "Type",
       "MORE": "More",
       "EXAMPLE": "Example",
       "FUNNEL": "Funnel",

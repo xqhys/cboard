@@ -88,6 +88,10 @@ cBoard.controller('dashboardViewCtrl', function ($timeout, $rootScope, $scope, $
         widget.render = function (content, optionFilter, scope) {
             // 百度地图特殊处理
             var charType = injectFilter(widget.widget).data.config.chart_type;
+            /*scope.curWidget.config.searches = injectFilter(widget.widget).data.config.searches;
+            if(!scope.curWidget.config.searches){
+                scope.curWidget.config.searches = [];
+            }*/
             if (charType == 'chinaMapBmap') {
                 chartService.render(content, injectFilter(widget.widget).data, optionFilter, scope, reload);
                 widget.loading = false;

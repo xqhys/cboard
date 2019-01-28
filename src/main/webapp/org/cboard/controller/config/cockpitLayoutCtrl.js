@@ -646,6 +646,13 @@ cBoard.controller('cockpitLayoutCtrl', function ($scope, $stateParams, $state, c
                 }).then(function (res) {
                     var res = res.data;
                     getDatasetList().then(function (dsres) {
+                        $scope.curWidget = {};
+                        $scope.curWidget.config = {};
+                        if(!res.data.config.searches){
+                            $scope.curWidget.config.searches = [];
+                        }else {
+                            $scope.curWidget.config.searches = res.data.config.searches;
+                        }
                         var dataset = _.find(dsres, function (e) {
                             return e.id == res.data.datasetId;
                         });
@@ -669,6 +676,7 @@ cBoard.controller('cockpitLayoutCtrl', function ($scope, $stateParams, $state, c
     });
 
     var loadWidget = function (containerDom, widget, optionFilter, scope, reload, persist, relations) {
+
         chartService.render(containerDom, widget, optionFilter, scope, reload, persist, relations, true);
     };
 
@@ -691,6 +699,7 @@ cBoard.controller('cockpitLayoutCtrl', function ($scope, $stateParams, $state, c
     var getDatasetList = function () {
         var deferred = $q.defer();
         vm.$http.get("dashboard/getDatasetList.do").then(function (data) {
+            alert(JSON.stringify(data))
             var data = data.data;
             deferred.resolve(data);
         });

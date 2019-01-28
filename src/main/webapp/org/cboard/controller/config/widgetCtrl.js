@@ -1021,6 +1021,9 @@ cBoard.controller('widgetCtrl', function ($scope, $state, $stateParams, $http, $
             o.data.filterGroups = _.filter($scope.curWidget.filterGroups, function (e) {
                 return !$scope.isDsFilter(e);
             });
+            o.data.searchGroups = _.filter($scope.curWidget.searchGroups, function (e) {
+                return !$scope.isDsFilter(e);
+            });
             $scope.alerts = [];
             $scope.verify = {widgetName: true};
 
@@ -1099,6 +1102,9 @@ cBoard.controller('widgetCtrl', function ($scope, $state, $stateParams, $http, $
             if (!$scope.curWidget.filterGroups) {
                 $scope.curWidget.filterGroups = [];
             }
+            if (!$scope.curWidget.searchGroups) {
+                $scope.curWidget.searchGroups = [];
+            }
             updateService.updateConfig($scope.curWidget.config);
             $scope.datasource = _.find($scope.datasourceList, function (ds) {
                 return ds.id == widget.data.datasource;
@@ -1158,6 +1164,18 @@ cBoard.controller('widgetCtrl', function ($scope, $state, $stateParams, $http, $
         $scope.filterFilterGroup = function (e) {
             var result = false;
             _.each($scope.curWidget.config.filters, function (f) {
+                if (f.group) {
+                    if (e.id == f.id && e.group == f.group) {
+                        result = true;
+                    }
+                }
+            });
+            return !result;
+        };
+
+        $scope.searchSearchGroup = function (e) {
+            var result = false;
+            _.each($scope.curWidget.config.searches, function (f) {
                 if (f.group) {
                     if (e.id == f.id && e.group == f.group) {
                         result = true;
@@ -1467,7 +1485,7 @@ cBoard.controller('widgetCtrl', function ($scope, $state, $stateParams, $http, $
         $scope.editSearchGroup = function (col) {
             var columnObjs = schemaToSelect($scope.schema);
             $uibModal.open({
-                templateUrl: 'org/cboard/view/config/modal/filterGroup.html',
+                templateUrl: 'org/cboard/view/config/modal/searchGroup.html',
                 windowTemplateUrl: 'org/cboard/view/util/modal/window.html',
                 backdrop: false,
                 scope: $scope,
@@ -1475,25 +1493,26 @@ cBoard.controller('widgetCtrl', function ($scope, $state, $stateParams, $http, $
                     if (col) {
                         $scope.data = angular.copy(col);
                     } else {
-                        $scope.data = {group: '', filters: []};
+                        $scope.data = {group: '', type:'' , searches: []};
                     }
                     $scope.columnObjs = columnObjs;
                     $scope.close = function () {
                         $uibModalInstance.close();
                     };
                     $scope.addColumn = function (str) {
-                        $scope.data.filters.push({col: str, type: '=', values: []})
+                        $scope.data.searches.push({col: str, type: '=', values: []})
                     };
                     $scope.ok = function () {
                         if (col) {
                             col.group = $scope.data.group;
-                            col.filters = $scope.data.filters;
+                            col.type = $scope.data.type;
+                            col.searches = $scope.data.searches;
                         } else {
-                            $scope.curWidget.filterGroups.push($scope.data);
+                            $scope.curWidget.searchGroups.push($scope.data);
                         }
                         $uibModalInstance.close();
                     };
-                    $scope.editFilter = function (filter) {
+                    $scope.editFilter = function (search) {
                         $uibModal.open({
                             templateUrl: 'org/cboard/view/dashboard/modal/param.html',
                             windowTemplateUrl: 'org/cboard/view/util/modal/window.html',
@@ -1501,7 +1520,7 @@ cBoard.controller('widgetCtrl', function ($scope, $state, $stateParams, $http, $
                             size: 'lg',
                             resolve: {
                                 param: function () {
-                                    return angular.copy(filter);
+                                    return angular.copy(search);
                                 },
                                 filter: function () {
                                     return false;
@@ -1515,8 +1534,8 @@ cBoard.controller('widgetCtrl', function ($scope, $state, $stateParams, $http, $
                                 },
                                 ok: function () {
                                     return function (param) {
-                                        filter.type = param.type;
-                                        filter.values = param.values;
+                                        search.type = param.type;
+                                        search.values = param.values;
                                     }
                                 }
                             },
@@ -1754,6 +1773,9 @@ cBoard.controller('widgetCtrl', function ($scope, $state, $stateParams, $http, $
                     break;
                 case 'filterGroup':
                     $scope.targetHighlight.filter = true;
+                    break;
+                case 'searchGroup':
+                    $scope.targetHighlight.search = true;
                     break;
                 case 'select':
                     $scope.targetHighlight = {row: true, column: true, value: true, filter: true};
