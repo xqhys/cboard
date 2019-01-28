@@ -1464,6 +1464,69 @@ cBoard.controller('widgetCtrl', function ($scope, $state, $stateParams, $http, $
             });
         };
 
+        $scope.editSearchGroup = function (col) {
+            var columnObjs = schemaToSelect($scope.schema);
+            $uibModal.open({
+                templateUrl: 'org/cboard/view/config/modal/filterGroup.html',
+                windowTemplateUrl: 'org/cboard/view/util/modal/window.html',
+                backdrop: false,
+                scope: $scope,
+                controller: function ($scope, $uibModalInstance) {
+                    if (col) {
+                        $scope.data = angular.copy(col);
+                    } else {
+                        $scope.data = {group: '', filters: []};
+                    }
+                    $scope.columnObjs = columnObjs;
+                    $scope.close = function () {
+                        $uibModalInstance.close();
+                    };
+                    $scope.addColumn = function (str) {
+                        $scope.data.filters.push({col: str, type: '=', values: []})
+                    };
+                    $scope.ok = function () {
+                        if (col) {
+                            col.group = $scope.data.group;
+                            col.filters = $scope.data.filters;
+                        } else {
+                            $scope.curWidget.filterGroups.push($scope.data);
+                        }
+                        $uibModalInstance.close();
+                    };
+                    $scope.editFilter = function (filter) {
+                        $uibModal.open({
+                            templateUrl: 'org/cboard/view/dashboard/modal/param.html',
+                            windowTemplateUrl: 'org/cboard/view/util/modal/window.html',
+                            backdrop: false,
+                            size: 'lg',
+                            resolve: {
+                                param: function () {
+                                    return angular.copy(filter);
+                                },
+                                filter: function () {
+                                    return false;
+                                },
+                                getSelects: function () {
+                                    return function (byFilter, column, callback) {
+                                        dataService.getDimensionValues($scope.datasource ? $scope.datasource.id : null, $scope.curWidget.query, $scope.curWidget.datasetId, column, undefined, function (filtered) {
+                                            callback(filtered);
+                                        });
+                                    };
+                                },
+                                ok: function () {
+                                    return function (param) {
+                                        filter.type = param.type;
+                                        filter.values = param.values;
+                                    }
+                                }
+                            },
+                            controller: 'paramSelector'
+                        });
+                    };
+                }
+            });
+        };
+
         $scope.editSort = function (o) {
             switch (o.sort) {
                 case 'asc':

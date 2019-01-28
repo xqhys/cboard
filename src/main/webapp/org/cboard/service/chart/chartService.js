@@ -7,7 +7,7 @@ cBoard.service('chartService', function($q, dataService, chartPieService, chartL
   chartMapService, chartScatterService, chartGaugeService, chartWordCloudService,
   chartTreeMapService, chartAreaMapService, chartHeatMapCalendarService, chartHeatMapTableService,
   chartLiquidFillService, chartContrastService, chartChinaMapService, chartChinaMapBmapService,
-  chartRelationService, chartWorldMapService, $compile) {
+  chartRelationService, chartWorldMapService, searchConditionService) {
 
   this.render = function(containerDom, widget, optionFilter, scope, reload, persist, relations, isCockpit) {
       if (isCockpit) {
@@ -95,7 +95,7 @@ cBoard.service('chartService', function($q, dataService, chartPieService, chartL
           chart.render(containerDom, option, scope, persist, data.drill);
         } else {
           deferred.resolve(chart.render(containerDom, option, scope, persist, data.drill, relations, widget.config));
-          searchCondition(scope, containerDom);
+            searchConditionService.search(scope, containerDom);
         }
       }
     }, reload);
@@ -194,21 +194,5 @@ cBoard.service('chartService', function($q, dataService, chartPieService, chartL
     }
     return chart;
   };
-
-  // 检索条件
-  var searchCondition = function(scope, containerDom){
-      var searchCondition = "<div class='searchCondition' style='border: 0px solid red;width: 400px;min-height: 65px;margin-left: auto;margin-right: 25px;position:relative;z-index:9999;'>" +
-          "<table style='margin-left: auto;'>" +
-          "<tr>" +
-          "<td><input type='radio' name='radio_flag' key='goodsClass' value='男士毛衣' ng-click='searchCondition()'>男士毛衣</td>" +
-          "<td>&nbsp;&nbsp;<input type='radio' name='radio_flag' key='goodsClass' value='男士衣裤' ng-click='searchCondition()'>男士衣裤</td>" +
-          "</tr>" +
-          "</table>" +
-          "</div>";
-
-      var $searchCondition = $compile(searchCondition)(scope);
-      containerDom.find("div").first().css("top", "-65px")
-      containerDom.find("div").first().before($searchCondition);
-  }
 
 });

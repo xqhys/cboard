@@ -82,4 +82,21 @@
             </ul>
         </li>
     </ul>
+    <ul style="padding-left: 5px">
+        <li class="parent_li">
+            <span><img src="imgs/schema/filter.png"/><b>{{'CONFIG.DATASET.SEARCH'|translate}}</b></span>
+            <i class="glyphicon glyphicon-plus" ng-click="editSearchGroup()"></i>
+            <ul>
+                <li ng-repeat="o in curWidget.filterGroups|filter:filterFilterGroup">
+                     拖拽
+                    <span dnd-draggable="o"
+                          dnd-type="'searchGroup'"
+                          dnd-dragstart="onDragstart('searchGroup')" dnd-dragend="onDragCancle()">
+                    <img src="imgs/schema/bullet_green.png">{{o.group}}</span>
+                    <i class="fa fa-edit" ng-click="editSearchGroup(o)" ng-if="!isDsFilter(o)"></i>
+                    <i class="fa fa-trash-o" ng-click="curWidget.searchGroups.splice($index, 1)" ng-if="!isDsFilter(o)"></i>
+                </li>
+            </ul>
+        </li>
+    </ul>
 </div>
