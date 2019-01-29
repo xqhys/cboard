@@ -94,8 +94,10 @@ cBoard.service('chartService', function($q, dataService, chartPieService, chartL
         if (widget.config.chart_type == 'chinaMapBmap') {
           chart.render(containerDom, option, scope, persist, data.drill);
         } else {
-          deferred.resolve(chart.render(containerDom, option, scope, persist, data.drill, relations, widget.config));
-            searchConditionService.search(scope, containerDom);
+            deferred.resolve(chart.render(containerDom, option, scope, persist, data.drill, relations, widget.config));
+            if(!(containerDom.parent().attr("class") == 'cockpit-line')){
+                searchConditionService.search(scope, containerDom);
+            }
         }
       }
     }, reload);

@@ -73,11 +73,35 @@
                          :x="(cockpitComponent.chartData.positionX*cockpitComponent.chartData.xprop).toFixed()"
                          :y="(cockpitComponent.chartData.positionY*cockpitComponent.chartData.yprop).toFixed()"
                          v-bind:style=" {width:(cockpitComponent.chartData.chartWidth*cockpitComponent.chartData.xprop).toFixed() + 'px', height:(cockpitComponent.chartData.chartHeight*cockpitComponent.chartData.yprop).toFixed() + 'px', transform:'translate(' + (cockpitComponent.chartData.positionX*cockpitComponent.chartData.xprop).toFixed() + 'px,' + (cockpitComponent.chartData.positionY*cockpitComponent.chartData.yprop).toFixed() + 'px)'} ">
-                        <div class="cockpit-view-close" style="display: none;"><i class="fa fa-times" aria-hidden="true"
-                                                                                  @click="closeCockpitWin(cockpitComponent.domId)"></i>
+
+                        <div class="search-view" v-if="cockpitComponent.componentType === 'chart'">
+                            <div class="btn-group" v-for="search in cockpitComponent.searches">
+                                <div class="form-inline">
+                                    <label class="radio-inline" v-if="search.type === 'radio'">
+                                        <input type="radio" name="search.searches[0].col" value="search.searches[0].values[0]">
+                                        {{search.group}}
+                                    </label>
+
+                                    <label class="checkbox-inline" v-if="search.type === 'checkbox'">
+                                        <input type="checkbox" name="search.searches[0].col" value="search.searches[0].values[0]">
+                                        {{search.group}}
+                                    </label>
+
+                                    <!--<label class="checkbox-inline">
+                                    <input type='text' class="form-control" name="" value="">
+                                        {{search.group}}
+                                    </label>
+                                    <button type="button" ng-if="o.type == 'text' && $index == 0" class="btn btn-success btn-sm">提交</button>-->
+                                </div>
+                            </div>
                         </div>
-                        <component v-bind:is="cockpitComponent.componentName"
-                                   v-bind:chartData="cockpitComponent.chartData"></component>
+
+                        <div class="cockpit-view-close" style="display: none;">
+                            <i class="fa fa-times" aria-hidden="true" @click="closeCockpitWin(cockpitComponent.domId)">
+                            </i>
+                        </div>
+                        <component v-bind:is="cockpitComponent.componentName" v-bind:chartData="cockpitComponent.chartData">
+                        </component>
                     </div>
                 </div>
             </div>

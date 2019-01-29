@@ -197,7 +197,8 @@ cBoard.controller('cockpitLayoutCtrl', function ($scope, $stateParams, $state, c
                     componentName: dom.componentName,
                     componentType: dom.type,
                     chartData: cockpitChartData,
-                    widgetId: dom.widgetId
+                    widgetId: dom.widgetId,
+                    searches: dom.searches
                 };
 
                 if (!vm._data.viewType) {
@@ -284,7 +285,8 @@ cBoard.controller('cockpitLayoutCtrl', function ($scope, $stateParams, $state, c
                                         positionX: widgets[j].positionX,
                                         positionY: widgets[j].positionY,
                                         domId: widgets[j].domId,
-                                        border: widgets[j].border
+                                        border: widgets[j].border,
+                                        searches: widgets[j].widget.data.config.searches // 检索条件
                                     };
                                     hexCockpit.componentDom = componentDom;
                                     vm.drop();
@@ -699,7 +701,6 @@ cBoard.controller('cockpitLayoutCtrl', function ($scope, $stateParams, $state, c
     var getDatasetList = function () {
         var deferred = $q.defer();
         vm.$http.get("dashboard/getDatasetList.do").then(function (data) {
-            alert(JSON.stringify(data))
             var data = data.data;
             deferred.resolve(data);
         });

@@ -171,6 +171,19 @@
     cursor: pointer;
 }
 
+.search-view{
+    color: #fff;
+    height: 26px;
+    position: absolute;
+    text-align: right;
+    /*padding-right: 5px;*/
+    /*padding-top: 5px;*/
+    z-index: 9999;
+    width: 95%;
+    top: 0;
+    right: 15px;
+}
+
 /*柱状图组件样式*/
 .cockpit-bar{
     height: 100%;

@@ -3,9 +3,31 @@
         <div class="cockpit-row cockpit-col">
             <div id="cockpit-drag" class="cockpit-canvas"
                  v-bind:style=" {width:viewDragWidth,height:viewDragHeight,background:(cockpitConf.background.includes('.')?'url(' + basePath + 'imgs/cockpit/' + cockpitConf.background + ') repeat':cockpitConf.background)} ">
-                <div class="cockpit-block" v-for="dataChart in viewDataCharts" :id="dataChart.domId"
-                     :type="dataChart.chartType"
+                <div class="cockpit-block" v-for="dataChart in viewDataCharts" :id="dataChart.domId" :type="dataChart.chartType"
                      v-bind:style=" {width:dataChart.chartData.chartWidth + 'px', height:dataChart.chartData.chartHeight + 'px', transform:'translate(' + dataChart.chartData.positionX + 'px,' + dataChart.chartData.positionY + 'px)'} ">
+
+                    <div class="search-view" v-if="dataChart.componentType === 'chart'">
+                        <div class="btn-group" v-for="search in dataChart.searches">
+                            <div class="form-inline">
+                                <label class="radio-inline" v-if="search.type === 'radio'">
+                                    <input type="radio" name="search.searches[0].col" value="search.searches[0].values[0]">
+                                    {{search.group}}
+                                </label>
+
+                                <label class="checkbox-inline" v-if="search.type === 'checkbox'">
+                                    <input type="checkbox" name="search.searches[0].col" value="search.searches[0].values[0]">
+                                    {{search.group}}
+                                </label>
+
+                                <!--<label class="checkbox-inline">
+                                <input type='text' class="form-control" name="" value="">
+                                    {{search.group}}
+                                </label>
+                                <button type="button" ng-if="o.type == 'text' && $index == 0" class="btn btn-success btn-sm">提交</button>-->
+                            </div>
+                        </div>
+                    </div>
+
                     <component v-bind:is="dataChart.componentName" v-bind:chartData="dataChart.chartData"></component>
                 </div>
             </div>
