@@ -17,7 +17,6 @@ cBoard.directive('dashboardWidget', function ($compile, $templateCache, dataServ
         var link = $compile(template);
         element.append(link(scope));
         var ndWrapper = $(element).find('.box-body');
-        debugger;
         scope.widget.render(ndWrapper, null, scope);
     };
 

@@ -54,6 +54,7 @@ cBoard.controller('cockpitLayoutCtrl', function ($scope, $stateParams, $state, c
             cockpitChartData: cockpitChartData,
             categoryList: [],
             boardId: '',
+            searches: []
         },
         methods: {
             //测试使用按钮来获取图表
@@ -648,13 +649,6 @@ cBoard.controller('cockpitLayoutCtrl', function ($scope, $stateParams, $state, c
                 }).then(function (res) {
                     var res = res.data;
                     getDatasetList().then(function (dsres) {
-                        $scope.curWidget = {};
-                        $scope.curWidget.config = {};
-                        if(!res.data.config.searches){
-                            $scope.curWidget.config.searches = [];
-                        }else {
-                            $scope.curWidget.config.searches = res.data.config.searches;
-                        }
                         var dataset = _.find(dsres, function (e) {
                             return e.id == res.data.datasetId;
                         });
@@ -706,5 +700,39 @@ cBoard.controller('cockpitLayoutCtrl', function ($scope, $stateParams, $state, c
         });
         return deferred.promise;
     };
+
+    Vue.component("label-input", {
+        props: ['classes'],
+        template: '<label :class="classes">\n' +
+            '<input v-bind="$attrs" @click="searchCondition($attrs)">\n' +
+            '{{ $attrs.group }}\n' +
+            '</label>',
+        methods: {
+            searchCondition: function (attrs) {
+                vm.$http.get('dashboard/dashboardWidget.do', {params: {"id": attrs.widgetid}}).then(function (res) {
+                    var res = res.data;
+                    attrs.searches.push({
+                        "filters": [
+                            {
+                                "col": attrs.name,
+                                "values": [
+                                    attrs.value
+                                ],
+                                "type": attrs.component
+                            }
+                        ],
+                        "group": attrs.group
+                    });
+                    res.data.config.filters = res.data.config.filters.concat(attrs.searches);
+                    alert(JSON.stringify(res.data.config.filters))
+                    getDatasetList().then(function (dsres) {
+                        loadWidget($("#" + attrs.domid + "_01"), res.data, null, $scope, false);
+                    });
+                }, function (res) {
+                    console.log(res.status);
+                });
+            }
+        }
+    });
 
 });

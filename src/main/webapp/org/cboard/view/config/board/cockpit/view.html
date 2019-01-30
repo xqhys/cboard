@@ -77,15 +77,27 @@
                         <div class="search-view" v-if="cockpitComponent.componentType === 'chart'">
                             <div class="btn-group" v-for="search in cockpitComponent.searches">
                                 <div class="form-inline">
-                                    <label class="radio-inline" v-if="search.type === 'radio'">
-                                        <input type="radio" name="search.searches[0].col" value="search.searches[0].values[0]">
-                                        {{search.group}}
-                                    </label>
+                                    <label-input v-for="components in search.searches"
+                                                 :classes="search.type+'-inline'"
+                                                 :type="search.type"
+                                                 :name="components.col"
+                                                 :value="components.values[0]"
+                                                 :component="components.type"
+                                                 :group="search.group"
+                                                 :widgetid="cockpitComponent.widgetId"
+                                                 :domid="cockpitComponent.domId" :searches="searches">
+                                    </label-input>
 
-                                    <label class="checkbox-inline" v-if="search.type === 'checkbox'">
-                                        <input type="checkbox" name="search.searches[0].col" value="search.searches[0].values[0]">
-                                        {{search.group}}
-                                    </label>
+
+                                    <!--<label class="radio-inline" v-if="search.type === 'radio'">-->
+                                        <!--<input type="radio" name="search.searches[0].col" value="search.searches[0].values[0]">-->
+                                        <!--{{search.group}}-->
+                                    <!--</label>-->
+
+                                    <!--<label class="checkbox-inline" v-if="search.type === 'checkbox'">-->
+                                        <!--<input type="checkbox" name="search.searches[0].col" value="search.searches[0].values[0]">-->
+                                        <!--{{search.group}}-->
+                                    <!--</label>-->
 
                                     <!--<label class="checkbox-inline">
                                     <input type='text' class="form-control" name="" value="">
